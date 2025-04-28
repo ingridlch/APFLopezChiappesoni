@@ -11,12 +11,14 @@ import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { AlumnoNombreApellidoPipe } from './pipes/alumno-nombre-apellido.pipe';
+import { TitlecolumnDirective } from './directives/titlecolumn.directive';
 
 @NgModule({
   declarations: [
     AlumnosComponent,
     AlumnosTableComponent,
-    AlumnoNombreApellidoPipe
+    AlumnoNombreApellidoPipe,
+    TitlecolumnDirective
   ],
   imports: [
     CommonModule,

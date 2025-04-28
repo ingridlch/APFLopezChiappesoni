@@ -10,11 +10,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
+import { AlumnoNombreApellidoPipe } from './pipes/alumno-nombre-apellido.pipe';
 
 @NgModule({
   declarations: [
     AlumnosComponent,
-    AlumnosTableComponent
+    AlumnosTableComponent,
+    AlumnoNombreApellidoPipe
   ],
   imports: [
     CommonModule,

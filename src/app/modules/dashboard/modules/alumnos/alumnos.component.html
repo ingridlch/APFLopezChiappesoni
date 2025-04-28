@@ -6,18 +6,27 @@
           <mat-form-field class="w-100">
             <mat-label>Nombre</mat-label>
             <input formControlName="nombre" matInput />
+            <div *ngIf="alumnoForm.controls['nombre'].invalid && (alumnoForm.controls['nombre'].dirty || alumnoForm.controls['nombre'].touched)">
+                El nombre es requerido
+            </div>
           </mat-form-field>
         </div>
         <div class="col-4">
           <mat-form-field class="w-100">
             <mat-label>Apellido</mat-label>
             <input formControlName="apellido" matInput />
+            <div *ngIf="alumnoForm.controls['apellido'].invalid && (alumnoForm.controls['apellido'].dirty || alumnoForm.controls['apellido'].touched)">
+                El apellido es requerido
+            </div>
           </mat-form-field>
         </div>
         <div class="col-4">
           <mat-form-field class="w-100">
             <mat-label>Email</mat-label>
             <input formControlName="email" matInput />
+            <div *ngIf="alumnoForm.controls['email'].invalid && (alumnoForm.controls['email'].dirty || alumnoForm.controls['email'].touched)">
+                El email es requerido y debe tener formato válido
+            </div>
           </mat-form-field>
         </div>
         <div class="col-12 d-flex justify-content-center">

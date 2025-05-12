@@ -10,6 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import {MatListModule} from '@angular/material/list';
 import {AlumnosModule} from './modules/alumnos/alumnos.module';
+import { CursosModule } from './modules/cursos/cursos.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {AlumnosModule} from './modules/alumnos/alumnos.module';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-    AlumnosModule
+    AlumnosModule,
+    CursosModule
   ],
   exports: [
     DashboardComponent

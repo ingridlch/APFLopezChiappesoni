@@ -1,6 +1,6 @@
-# Primera entrega de Proyecto final de curso de Angular
+# Segunda entrega de Proyecto final de curso de Angular
 
-Generación un proyecto Angular que contempla la administración de alumnos utilizando Angular Material.
+Generación un proyecto Angular que contempla la administración de alumnos y cursos. Se utiliza Angular Material, servicios que devuelven observables con datos mockeados, uso de routing, .
 
 ## Development server
 

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Alumno } from './models';
+import { AlumnosService } from './alumnos.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-alumnos',
@@ -11,25 +13,33 @@ import { Alumno } from './models';
 export class AlumnosComponent {
   alumnoForm: FormGroup;
   idActual: number = 0;
-
-  alumnos: Alumno[] = [
-    {id: 1, nombre: 'Analía', apellido: 'Gervasoni', email: 'analia@gmail.com'},
-    {id: 2, nombre: 'Benjamin', apellido: 'Hurtado', email: 'benja@gmail.com'},
-    {id: 3, nombre: 'Cecilia', apellido: 'Alem', email: 'ceci@outlook.com'},
-    {id: 4, nombre: 'Demetrio', apellido: 'Zaragoza', email: 'demetrio@outlook.com'},
-    {id: 5, nombre: 'Ernestina', apellido: 'Curuzu', email: 'ernecu@yahoo.com.ar'},
-    /*{id: 6, nombre: 'Fernando', apellido: 'Furlan', email: 'ferfu@outlook.com'},
-    {id: 7, nombre: 'Gabriela', apellido: 'Lorenzon', email: 'gabi@gmail.com'},
-    {id: 8, nombre: 'Hilario', apellido: 'Cuestas', email: 'hilari@outlook.com'},*/
-  ];
+  isLoading = false;
+  alumnos : Alumno[] = [];
+  alumnosSubscription: Subscription | null = null; // Subscription to manage the observable
   
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private alumnosService: AlumnosService){
+    this.loadAlumnosObservable();
     this.alumnoForm = this.fb.group({
       id: 0,
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       apellido: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
     })
+  }
+
+  loadAlumnosObservable() {
+    this.isLoading = true;
+    this.alumnosSubscription = this.alumnosService
+      .getAlumnos$()
+      .subscribe({
+        next: (datos) => {
+          this.alumnos = datos;
+        },
+        error: (error) => console.error(error),
+        complete: () => {
+          this.isLoading = false;
+        },
+      });
   }
 
   onSubmit(){

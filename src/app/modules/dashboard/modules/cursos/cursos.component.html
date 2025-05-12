@@ -1,0 +1,32 @@
+<h1>Cursos</h1>
+
+<ng-container *ngIf="isLoading; else notLoading">
+  <p>Cargando, por favor espere...</p>
+</ng-container>
+
+<ng-template #notLoading>
+  <form [formGroup]="cursoForm" (ngSubmit)="onSubmit()" >
+    <div class="row">
+        <div class="col-4">
+          <mat-form-field class="w-100">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="nombre" matInput />
+            <mat-error *ngIf="cursoForm.controls['nombre'].invalid && (cursoForm.controls['nombre'].dirty || cursoForm.controls['nombre'].touched)">
+              El nombre es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+          <mat-form-field class="w-100">
+            <mat-label>Descripcion</mat-label>
+            <input formControlName="descripcion" matInput />
+          </mat-form-field>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+          <button type="submit" mat-button>Guardar</button>
+        </div>
+    </div> 
+  </form>
+
+  <app-cursos-table (editCurso)="onEditCurso($event)" (deleteCurso)="onDeleteCurso($event)" [dataSource]="cursos" />
+</ng-template>  

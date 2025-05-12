@@ -1,38 +1,44 @@
 <h1>Alumnos</h1>
 
-<form [formGroup]="alumnoForm" (ngSubmit)="onSubmit()" >
+<ng-container *ngIf="isLoading; else notLoading">
+  <p>Cargando, por favor espere...</p>
+</ng-container>
+
+<ng-template #notLoading>
+  <form [formGroup]="alumnoForm" (ngSubmit)="onSubmit()" >
     <div class="row">
         <div class="col-4">
           <mat-form-field class="w-100">
             <mat-label>Nombre</mat-label>
             <input formControlName="nombre" matInput />
-            <div *ngIf="alumnoForm.controls['nombre'].invalid && (alumnoForm.controls['nombre'].dirty || alumnoForm.controls['nombre'].touched)">
-                El nombre es requerido
-            </div>
+            <mat-error *ngIf="alumnoForm.controls['nombre'].invalid && (alumnoForm.controls['nombre'].dirty || alumnoForm.controls['nombre'].touched)">
+              El nombre es requerido
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="col-4">
           <mat-form-field class="w-100">
             <mat-label>Apellido</mat-label>
             <input formControlName="apellido" matInput />
-            <div *ngIf="alumnoForm.controls['apellido'].invalid && (alumnoForm.controls['apellido'].dirty || alumnoForm.controls['apellido'].touched)">
+            <mat-error *ngIf="alumnoForm.controls['apellido'].invalid && (alumnoForm.controls['apellido'].dirty || alumnoForm.controls['apellido'].touched)">
                 El apellido es requerido
-            </div>
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="col-4">
           <mat-form-field class="w-100">
             <mat-label>Email</mat-label>
             <input formControlName="email" matInput />
-            <div *ngIf="alumnoForm.controls['email'].invalid && (alumnoForm.controls['email'].dirty || alumnoForm.controls['email'].touched)">
+            <mat-error *ngIf="alumnoForm.controls['email'].invalid && (alumnoForm.controls['email'].dirty || alumnoForm.controls['email'].touched)">
                 El email es requerido y debe tener formato válido
-            </div>
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="col-12 d-flex justify-content-center">
           <button type="submit" mat-button>Guardar</button>
         </div>
     </div>  
-</form>
+  </form>
 
-<app-alumnos-table (editAlumno)="onEditAlumno($event)" (deleteAlumno)="onDeleteAlumno($event)" [dataSource]="alumnos" />
+  <app-alumnos-table (editAlumno)="onEditAlumno($event)" (deleteAlumno)="onDeleteAlumno($event)" [dataSource]="alumnos" />
+</ng-template>  

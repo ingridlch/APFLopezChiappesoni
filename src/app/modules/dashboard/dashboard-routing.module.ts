@@ -1,23 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { adminGuard } from '../../core/guards/admin.guard';
 
 const routes: Routes = [
   {
     path: 'alumnos',
+    data: { title: 'Alumnos' },
     loadChildren: () =>
-      import('./modules/alumnos/alumnos.module').then(
-        (m) => m.AlumnosModule
-      ),
+      import('./modules/alumnos/alumnos.module').then((m) => m.AlumnosModule),
   },
   {
     path: 'cursos',
+    data: { title: 'Cursos' },
     loadChildren: () =>
       import('./modules/cursos/cursos.module').then((m) => m.CursosModule),
   },
   /*{
-    path: 'clases',
+    path: 'usuarios',
+    canActivate: [adminGuard],
+    data: { title: 'Usuarios' },
     loadChildren: () =>
-      import('./modules/clases/clases.module').then((m) => m.ClasesModule),
+      import('./modules/clases/usuarios.module').then((m) => m.UsuariosModule),
+  },
+  {
+    path: 'inscripciones',
+    data: { title: 'Inscripciones' },
+    loadChildren: () =>
+      import('./modules/clases/inscripciones.module').then((m) => m.InscripcionesModule),
   },*/
 ];
 

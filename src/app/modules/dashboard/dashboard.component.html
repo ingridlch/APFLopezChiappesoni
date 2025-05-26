@@ -1,9 +1,13 @@
-<mat-toolbar>
+<mat-toolbar class="mat-toolbar">
     <button mat-icon-button (click)="drawer.toggle()" class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Administración de alumnos, clases y cursos</span>
-    <span class="example-spacer"></span>
+    <span>Escuela de cocina</span>
+    <span>{{title}}</span>
+    <span class="spacer"></span>
+    <label *ngIf="authUser | async; let user" class="usuario">
+      {{ user.name }}
+    </label>
   </mat-toolbar>
   
 <!-- SIDENAV -->

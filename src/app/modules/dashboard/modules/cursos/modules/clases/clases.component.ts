@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { ClasesService } from './clases.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../../../../../core/services/auth.service';
+import { User } from '../../../../../../core/models';
 
 @Component({
   selector: 'app-clases',
@@ -19,8 +21,10 @@ export class ClasesComponent {
   clases: Clase[] = [];
   isLoading = false;
   clasesSubscription: Subscription | null = null; // Subscription to manage the observable
+  authUser$: Observable<User | null>;
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute, private fb: FormBuilder, private clasesService: ClasesService){
+    constructor(private router: Router, private activatedRoute: ActivatedRoute, private fb: FormBuilder, private clasesService: ClasesService, private authService: AuthService){
+      this.authUser$ = this.authService.authUser$;
       this.nombre = this.activatedRoute.snapshot.queryParams['nombre'];
       this.cursoId = (this.activatedRoute.snapshot.params['id']==Number(this.activatedRoute.snapshot.params['id'])) ? Number(this.activatedRoute.snapshot.params['id']) : 0;
       if(this.cursoId>0) {

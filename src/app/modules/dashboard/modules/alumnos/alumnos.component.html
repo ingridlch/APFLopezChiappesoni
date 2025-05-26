@@ -5,7 +5,7 @@
 </ng-container>
 
 <ng-template #notLoading>
-  <form [formGroup]="alumnoForm" (ngSubmit)="onSubmit()" >
+  <form *ngIf="(authUser$ | async)?.role === 'admin'" [formGroup]="alumnoForm" (ngSubmit)="onSubmit()" >
     <div class="row">
         <div class="col-4">
           <mat-form-field class="w-100">

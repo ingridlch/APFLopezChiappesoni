@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Alumno } from '../../models';
+import { AuthService } from '../../../../../../core/services/auth.service';
+import { Observable } from 'rxjs';
+import { User } from '../../../../../../core/models';
 
 @Component({
   selector: 'app-alumnos-table',
@@ -18,4 +21,9 @@ export class AlumnosTableComponent {
 
   @Output()
   editAlumno = new EventEmitter<Alumno>();
+
+  authUser$: Observable<User | null>;
+  constructor(private authService: AuthService) {
+    this.authUser$ = this.authService.authUser$;
+  }
 }

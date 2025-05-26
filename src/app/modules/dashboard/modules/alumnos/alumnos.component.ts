@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Alumno } from './models';
 import { AlumnosService } from './alumnos.service';
 import { Observable, Subscription } from 'rxjs';
+import { AuthService } from '../../../../core/services/auth.service';
+import { User } from '../../../../core/models';
 
 @Component({
   selector: 'app-alumnos',
@@ -16,8 +18,10 @@ export class AlumnosComponent {
   isLoading = false;
   alumnos : Alumno[] = [];
   alumnosSubscription: Subscription | null = null; // Subscription to manage the observable
+  authUser$: Observable<User | null>;
   
-  constructor(private fb: FormBuilder, private alumnosService: AlumnosService){
+  constructor(private fb: FormBuilder, private alumnosService: AlumnosService, private authService: AuthService){
+    this.authUser$ = this.authService.authUser$;
     this.loadAlumnosObservable();
     this.alumnoForm = this.fb.group({
       id: 0,

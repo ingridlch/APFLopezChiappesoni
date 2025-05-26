@@ -1,0 +1,71 @@
+{
+  "students": [
+    {"id": "1", "nombre": "Analía", "apellido": "Gervasoni", "email": "analia@gmail.com"},
+    {"id": "2", "nombre": "Benjamin", "apellido": "Hurtado", "email": "benja@gmail.com"},
+    {"id": "3", "nombre": "Cecilia", "apellido": "Alem", "email": "ceci@outlook.com"},
+    {"id": "4", "nombre": "Demetrio", "apellido": "Zaragoza", "email": "demetrio@outlook.com"},
+    {"id": "5", "nombre": "Ernestina", "apellido": "Curuzu", "email": "ernecu@yahoo.com.ar"},
+    {"id": "6", "nombre": "Fernando", "apellido": "Furlan", "email": "ferfu@outlook.com"},
+    {"id": "7", "nombre": "Gabriela", "apellido": "Lorenzon", "email": "gabi@gmail.com"},
+    {"id": "8", "nombre": "Hilario", "apellido": "Cuestas", "email": "hilari@outlook.com"}
+  ],
+  "courses": [
+    {"id": 1, "nombre": "Panadería y pastelería", "descripcion": "Con este curso aprenderás bases y técnicas de la panadería y pastelería clásica."},
+    {"id": 2, "nombre": "Cocina navideña", "descripcion": "Con este curso corto de dos clases aprenderás platos salados y dulces para la mesa navideña."},
+    {"id": 3, "nombre": "Decoración de pasteles con bordes perfectos", "descripcion": "Curso corto para aprender cómo decorar las tortas con bordes filosos y obtener resultados impecables."}
+  ],
+  "classes": [
+    {"id": 1, "nombre": "masas quebradas", "descripcion": "masas friables: sablée, brisée y sucrée", "course_id": 1},
+    {"id": 2, "nombre": "masas batidas livianas", "descripcion": "de textura aireada usadas para elaboración de bizcochuelos, piononos y vainillas", "course_id": 1},
+    {"id": 3, "nombre": "masas batidas pesadas", "descripcion": "caracterizadas por tener presencia de manteca u otra materia grasa, incluye budines, brownies, muffins", "course_id":1},
+    {"id": 4, "nombre": "masas levadas", "descripcion": "trabajo con levadura, elaboración de poolish, creación de diferentes panes", "course_id":1},
+    {"id": 5, "nombre": "masas laminadas", "descripcion": "hojaldre francés, invertido y rápido. hojaldre de levadura, masa philo y strudel.", "course_id":1},
+    {"id": 6, "nombre": "cocina salada", "descripcion": "arrollado, acompañamientos, finger food", "course_id":2},
+    {"id": 7, "nombre": "cocina dulce", "descripcion": "pan dulce, galletas de jengibre, bastones de caramelo", "course_id":2},
+    {"id": 8, "nombre": "masas y armado", "descripcion": "masas batidas pesadas, rellenos", "course_id":3},
+    {"id": 9, "nombre": "decorado", "descripcion": "ganache de sellado y decoración, masas de forrado", "course_id":3}
+  ],
+  "inscriptions": [
+    {"course_id":"1","student_id":"1"},
+    {"course_id":"1","student_id":"2"},
+    {"course_id":"1","student_id":"3"},
+    {"course_id":"2","student_id":"2"},
+    {"course_id":"2","student_id":"4"},
+    {"course_id":"3","student_id":"5"},
+    {"course_id":"3","student_id":"6"}
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Delfina",
+      "email": "delfina@mail.com",
+      "password": "123456",
+      "role": "admin",
+      "token": "delfi123456789"
+    },
+    {
+      "id": "2",
+      "name": "Mateo",
+      "email": "mateo@mail.com",
+      "password": "123456",
+      "role": "admin",
+      "token": "mateo123456789"
+    },
+    {
+      "id": "3",
+      "name": "Ramiro",
+      "email": "ramiro@mail.com",
+      "password": "123456",
+      "role": "user",
+      "token": "ramiro123456789"
+    },
+    {
+      "id": "4",
+      "name": "Marina",
+      "email": "marina@mail.com",
+      "password": "123456",
+      "role": "user",
+      "token": "marina123456789"
+    }
+  ]
+}

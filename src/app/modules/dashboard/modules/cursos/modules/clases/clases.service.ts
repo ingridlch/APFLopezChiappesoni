@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Clase } from './models';
 import { delay, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 const CLASES: Clase[] = [
     {id: 1, nombre: 'masas quebradas', descripcion: 'masas friables: sablée, brisée y sucrée', curso_id: 1},
@@ -16,8 +17,10 @@ const CLASES: Clase[] = [
 
 @Injectable({ providedIn: 'root' })
 export class ClasesService {
-    getClasesByCurso(id:number): Observable<Clase[]> {
-        const clasesFiltradas = CLASES.filter(clase => clase.curso_id === id);
-        return of(clasesFiltradas).pipe(delay(500));
+    constructor(private http: HttpClient) {}
+    getClasesByCurso(id:string): Observable<Clase[]> {
+        /*const clasesFiltradas = CLASES.filter(clase => clase.curso_id === id);
+        return of(clasesFiltradas).pipe(delay(500));*/
+        return this.http.get<Clase[]>(`http://localhost:3000/classes?course_id=${id}`);
     }
 }

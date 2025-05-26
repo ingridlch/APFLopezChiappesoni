@@ -28,6 +28,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/clases/inscripciones.module').then((m) => m.InscripcionesModule),
   },*/
+  {
+    path: '**',
+    data: { title: 'Cursos' },
+    loadChildren: () =>
+      import('./modules/cursos/cursos.module').then((m) => m.CursosModule),
+  },
 ];
 
 @NgModule({

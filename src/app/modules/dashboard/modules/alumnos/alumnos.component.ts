@@ -14,7 +14,7 @@ import { User } from '../../../../core/models';
 })
 export class AlumnosComponent {
   alumnoForm: FormGroup;
-  idActual: number = 0;
+  idActual: string = '';
   isLoading = false;
   alumnos : Alumno[] = [];
   alumnosSubscription: Subscription | null = null; // Subscription to manage the observable
@@ -51,24 +51,43 @@ export class AlumnosComponent {
       alert('Complete todos los valores del formulario correctamente');
       return;
     }  
-    if(this.idActual===0){
-      //nuevo
-      const newAlumno = this.alumnoForm.value;
-      newAlumno.id = (this.alumnos.length>0) ? this.alumnos[this.alumnos.length - 1].id + 1 : 1; 
-      this.alumnos = [...this.alumnos, newAlumno];
+    if(this.idActual===''){
+      //nuevo  const newAlumno = this.alumnoForm.value;
+      const { id, ...newAlumno } = this.alumnoForm.value;
+      //newAlumno.id = (this.alumnos.length>0) ? this.alumnos[this.alumnos.length - 1].id + 1 : 1; 
+      //this.alumnos = [...this.alumnos, newAlumno];
+      this.alumnosService.create(newAlumno).subscribe({
+        next: (response) => {
+          this.alumnos = [...this.alumnos, response];
+        },
+        error: (error) => console.error(error),
+        complete: () => {console.log('Alumno creado exitosamente')},
+      });
     } else {
       //edita
-      this.alumnos = this.alumnos.map((al) => al.id === this.idActual ? { ...al, ...this.alumnoForm.value } : al);
+      const alumno = this.alumnoForm.value;
+      this.alumnosService.update(this.idActual,alumno).subscribe({
+        next: (response) => {
+          this.alumnos = response;
+          console.log(this.alumnos);
+        },
+      });
+      //this.alumnos = this.alumnos.map((al) => al.id === this.idActual ? { ...al, ...this.alumnoForm.value } : al);
     }
 
-    this.idActual = 0;
+    this.idActual = '';
     this.alumnoForm.reset();
   }
 
-  onDeleteAlumno(id:number){
+  onDeleteAlumno(id:number | string){
     console.log('Se elimina alumno '+id)
     if(confirm('¿Está seguro de eliminar el alumno?')){
-      this.alumnos = this.alumnos.filter((al)=>al.id!==id);
+      //this.alumnos = this.alumnos.filter((al)=>al.id!==id);
+      this.alumnosService.delete(id.toLocaleString()).subscribe({
+        next: (response) => {
+          this.alumnos = response;
+        },
+      });
     }
   }
 

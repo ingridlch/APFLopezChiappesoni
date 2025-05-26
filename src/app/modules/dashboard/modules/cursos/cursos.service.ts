@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Curso } from './models';
 import { delay, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 const CURSOS: Curso[] = [
     {id: 1, nombre: 'Panadería y pastelería', descripcion: 'Con este curso aprenderás bases y técnicas de la panadería y pastelería clásica.'},
@@ -10,7 +11,9 @@ const CURSOS: Curso[] = [
 
 @Injectable({ providedIn: 'root' })
 export class CursosService {
+    constructor(private http: HttpClient) {}
     getCursos$(): Observable<Curso[]> {
-        return of([...CURSOS]).pipe(delay(500));
+        //return of([...CURSOS]).pipe(delay(500));
+        return this.http.get<Curso[]>(`http://localhost:3000/courses`);
     }
 }

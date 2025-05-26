@@ -16,7 +16,7 @@ import { User } from '../../../../../../core/models';
 export class ClasesComponent {
   claseForm: FormGroup;
   idActual: number = 0;
-  cursoId: number = 0;
+  cursoId: string = '';
   nombre: string = '';
   clases: Clase[] = [];
   isLoading = false;
@@ -26,10 +26,11 @@ export class ClasesComponent {
     constructor(private router: Router, private activatedRoute: ActivatedRoute, private fb: FormBuilder, private clasesService: ClasesService, private authService: AuthService){
       this.authUser$ = this.authService.authUser$;
       this.nombre = this.activatedRoute.snapshot.queryParams['nombre'];
-      this.cursoId = (this.activatedRoute.snapshot.params['id']==Number(this.activatedRoute.snapshot.params['id'])) ? Number(this.activatedRoute.snapshot.params['id']) : 0;
-      if(this.cursoId>0) {
+      this.cursoId = this.activatedRoute.snapshot.params['id'];//==Number(this.activatedRoute.snapshot.params['id'])) ? Number(this.activatedRoute.snapshot.params['id']) : 0;
+      //this.cursoId = (this.activatedRoute.snapshot.params['id']==Number(this.activatedRoute.snapshot.params['id'])) ? Number(this.activatedRoute.snapshot.params['id']) : 0;
+      //if(this.cursoId>0) {
         this.loadClasesObservable();
-      }  
+      //}  
       this.claseForm = this.fb.group({
         id: 0,
         nombre: ['', [Validators.required, Validators.minLength(3)]],

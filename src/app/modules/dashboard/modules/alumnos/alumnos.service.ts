@@ -1,21 +1,52 @@
 import { Injectable } from '@angular/core';
-import { Alumno } from './models';
-import { Observable } from 'rxjs';
-
-const ALUMNOS: Alumno[] = [
-    {id: 1, nombre: 'Analía', apellido: 'Gervasoni', email: 'analia@gmail.com'},
-    {id: 2, nombre: 'Benjamin', apellido: 'Hurtado', email: 'benja@gmail.com'},
-    {id: 3, nombre: 'Cecilia', apellido: 'Alem', email: 'ceci@outlook.com'},
-    {id: 4, nombre: 'Demetrio', apellido: 'Zaragoza', email: 'demetrio@outlook.com'},
-    {id: 5, nombre: 'Ernestina', apellido: 'Curuzu', email: 'ernecu@yahoo.com.ar'},
-    /*{id: 6, nombre: 'Fernando', apellido: 'Furlan', email: 'ferfu@outlook.com'},
-    {id: 7, nombre: 'Gabriela', apellido: 'Lorenzon', email: 'gabi@gmail.com'},
-    {id: 8, nombre: 'Hilario', apellido: 'Cuestas', email: 'hilari@outlook.com'},*/
-  ];
+import { Alumno, AlumnoForm } from './models';
+import { Curso } from './../cursos/models';
+import { Inscripcion,InscripcionExpand } from './../../../../core/models';
+import { Observable, concatMap, of, forkJoin, map, mergeMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class AlumnosService {
-    getAlumnos$(): Observable<Alumno[]> {
+  constructor(private http: HttpClient) {}
+  getAlumnos$(): Observable<Alumno[]> {
+    return this.http.get<Alumno[]>(`http://localhost:3000/students`);
+  }
+  getById(id: string): Observable<Alumno> {
+    return this.http.get<Alumno>(`http://localhost:3000/students/${id}`);
+  }
+  getInscriptionsById(id:string): Observable<InscripcionExpand[]> {
+    //return this.http.get<InscriptionsExpand[]>(`http://localhost:3000/inscriptions?courseId=${id}`);
+    return this.http.get<Inscripcion[]>(`http://localhost:3000/inscriptions?studentId=${id}`)
+    .pipe(
+      mergeMap(inscriptions => {
+        // Creamos un array de observables para obtener cada curso
+        const requests = inscriptions.map(inscription =>
+          this.http.get<Curso>(`http://localhost:3000/courses/${inscription.courseId}`)
+            .pipe(
+              map(course => ({
+                ...inscription,
+                nombre: course.nombre
+              }))
+            )
+        );
+        // Ejecutamos todas las peticiones en paralelo y esperamos a que todas terminen
+        return forkJoin(requests);
+      })
+    );
+  }
+  create(alumno: AlumnoForm): Observable<Alumno> {
+    return this.http.post<Alumno>(`http://localhost:3000/students`, alumno);
+  }
+  delete(id: string): Observable<Alumno[]> {
+    return this.http
+      .delete<Alumno[]>(`http://localhost:3000/students/${id}`)
+      .pipe(concatMap(() => this.getAlumnos$()));
+  }
+  update(id: string, alumno: AlumnoForm): Observable<Alumno[]> {
+    return this.http.patch<Alumno>(`http://localhost:3000/students/${id}`, alumno)
+      .pipe(concatMap(() => this.getAlumnos$()));
+  }
+    /*getAlumnos$(): Observable<Alumno[]> {
         const alumnosObservable = new Observable<Alumno[]>((observer) => {
           setTimeout(() => {
             observer.next(ALUMNOS); // Emit the data
@@ -23,5 +54,5 @@ export class AlumnosService {
           }, 500);// Simulate a 1/2 second delay
         });
         return alumnosObservable;
-    }
+    }*/
 }

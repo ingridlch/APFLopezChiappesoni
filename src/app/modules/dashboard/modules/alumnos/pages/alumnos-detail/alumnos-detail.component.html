@@ -1,0 +1,14 @@
+@if (!(alumno$ | async)) {
+    <p>Alumno no encontrado</p>
+} @else {
+    <h3>{{ (alumno$ | async)?.nombre  }} {{ (alumno$ | async)?.apellido  }}</h3>
+    <h5>Cursos a los que se ha inscripto:</h5>
+    <mat-list>
+        <mat-list-item *ngFor="let curso of inscripciones$ | async">
+            <button mat-icon-button (click)="eliminarCurso(curso.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            {{ curso.nombre }}
+        </mat-list-item>
+    </mat-list>
+}

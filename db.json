@@ -56,9 +56,21 @@
     }
   ],
   "courses": [
-    {"id": 1, "nombre": "Panadería y pastelería", "descripcion": "Con este curso aprenderás bases y técnicas de la panadería y pastelería clásica."},
-    {"id": 2, "nombre": "Cocina navideña", "descripcion": "Con este curso corto de dos clases aprenderás platos salados y dulces para la mesa navideña."},
-    {"id": 3, "nombre": "Decoración de pasteles con bordes perfectos", "descripcion": "Curso corto para aprender cómo decorar las tortas con bordes filosos y obtener resultados impecables."}
+    {
+      "id": 1,
+      "nombre": "Panadería y pastelería",
+      "descripcion": "Con este curso aprenderás bases y técnicas de la panadería y pastelería clásica."
+    },
+    {
+      "id": 2,
+      "nombre": "Cocina navideña",
+      "descripcion": "Con este curso corto de dos clases aprenderás platos salados y dulces para la mesa navideña."
+    },
+    {
+      "id": 3,
+      "nombre": "Decoración de pasteles con bordes perfectos",
+      "descripcion": "Curso corto para aprender cómo decorar las tortas con bordes filosos y obtener resultados impecables."
+    }
   ],
   "classes": [
     {
@@ -184,12 +196,12 @@
       "token": "ramiro123456789"
     },
     {
-      "id": "4",
-      "name": "Marina",
+      "id": "67d3",
+      "name": "Marina Saavedra",
       "email": "marina@mail.com",
       "password": "123456",
       "role": "user",
-      "token": "marina123456789"
+      "token": "b6d6208c-ecad-4aee-87f3-9ae6a93ed0bd"
     }
   ]
 }

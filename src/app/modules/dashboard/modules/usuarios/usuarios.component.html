@@ -1,0 +1,54 @@
+<h1>Usuarios</h1>
+
+<ng-container *ngIf="isLoading; else notLoading">
+  <p>Cargando, por favor espere...</p>
+</ng-container>
+
+<ng-template #notLoading>
+  <form *ngIf="(authUser$ | async)?.role === 'admin'" [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" >
+    <div class="row">
+        <div class="col-3">
+          <mat-form-field class="w-100">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="name" matInput />
+            <mat-error *ngIf="usuarioForm.controls['name'].invalid && (usuarioForm.controls['name'].dirty || usuarioForm.controls['name'].touched)">
+              El nombre es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <mat-form-field class="w-100">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput />
+            <mat-error *ngIf="usuarioForm.controls['email'].invalid && (usuarioForm.controls['email'].dirty || usuarioForm.controls['email'].touched)">
+                El email es requerido y debe tener formato válido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <mat-form-field class="w-100">
+            <mat-label>Contraseña</mat-label>
+            <input formControlName="password" matInput />
+            <mat-error *ngIf="usuarioForm.controls['password'].invalid && (usuarioForm.controls['password'].dirty || usuarioForm.controls['password'].touched)">
+              La contraseña es requerida
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <mat-form-field class="w-100">
+            <mat-label>Rol</mat-label>
+            <input formControlName="role" matInput />
+            <mat-error *ngIf="usuarioForm.controls['role'].invalid && (usuarioForm.controls['role'].dirty || usuarioForm.controls['role'].touched)">
+              El rol es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+          <button type="submit" mat-button>Guardar</button>
+        </div>
+    </div>  
+  </form>
+
+  <app-usuarios-table (editUsuario)="onEditUsuario($event)" (deleteUsuario)="onDeleteUsuario($event)" [dataSource]="usuarios" />
+
+</ng-template>  

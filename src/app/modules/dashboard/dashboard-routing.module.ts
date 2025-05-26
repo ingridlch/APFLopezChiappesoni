@@ -15,18 +15,18 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/cursos/cursos.module').then((m) => m.CursosModule),
   },
-  /*{
+  {
     path: 'usuarios',
     canActivate: [adminGuard],
     data: { title: 'Usuarios' },
     loadChildren: () =>
-      import('./modules/clases/usuarios.module').then((m) => m.UsuariosModule),
+      import('./modules/usuarios/usuarios.module').then((m) => m.UsuariosModule),
   },
-  {
+  /*{
     path: 'inscripciones',
     data: { title: 'Inscripciones' },
     loadChildren: () =>
-      import('./modules/clases/inscripciones.module').then((m) => m.InscripcionesModule),
+      import('./modules/inscripciones/inscripciones.module').then((m) => m.InscripcionesModule),
   },*/
   {
     path: '**',

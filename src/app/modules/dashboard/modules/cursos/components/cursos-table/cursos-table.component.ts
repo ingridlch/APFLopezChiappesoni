@@ -11,7 +11,7 @@ import { User } from '../../../../../../core/models';
   styles: ``
 })
 export class CursosTableComponent {
-  displayedColumns: string[] = ['nombre', 'descripcion', 'clases', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'descripcion', 'acciones'];
 
   @Input()
   dataSource: Curso[] = [];

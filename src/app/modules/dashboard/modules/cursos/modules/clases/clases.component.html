@@ -1,5 +1,15 @@
-<h1>Clases del curso {{ nombre }} </h1> 
-
+<h2>{{ nombre }} </h2> 
+<h5>Alumnos se han inscripto:</h5>
+    <mat-list>
+        <mat-list-item *ngFor="let curso of inscripciones$ | async">
+            <button mat-icon-button (click)="eliminarInscripcion(curso.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            {{ curso.nombre }}
+        </mat-list-item>
+    </mat-list>
+<hr />
+<h5>Clases del curso</h5>
 <ng-container *ngIf="isLoading; else notLoading">
   <p>Cargando, por favor espere...</p>
 </ng-container>
@@ -32,7 +42,7 @@
 
   <div class="col-12 d-flex justify-content-center">
     <button (click)="volverACursos()" mat-button>
-      Volver a Cursos
+      Volver a lista de Cursos
     </button>
   </div>
   

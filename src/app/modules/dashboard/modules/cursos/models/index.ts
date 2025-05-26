@@ -1,5 +1,9 @@
 export interface Curso {
-    id: number;
+    id: string;
+    nombre: string;
+    descripcion: string
+  }
+export interface CursoForm {
     nombre: string;
     descripcion: string
   }

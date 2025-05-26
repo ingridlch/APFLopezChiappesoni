@@ -1,6 +1,12 @@
 export interface Clase {
-    id: number;
+    id: string;
     nombre: string;
     descripcion: string;
-    curso_id: number;
+    courseId: string;
+  }
+
+  export interface ClaseForm {
+    nombre: string;
+    descripcion: string;
+    courseId: string;
   }

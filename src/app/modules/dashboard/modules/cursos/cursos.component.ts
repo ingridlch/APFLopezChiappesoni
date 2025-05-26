@@ -14,7 +14,7 @@ import { User } from '../../../../core/models';
 })
 export class CursosComponent {
   cursoForm: FormGroup;
-  idActual: number = 0;
+  idActual: string = '';
   cursos: Curso[] = [];
   isLoading = false;
   cursosSubscription: Subscription | null = null; // Subscription to manage the observable
@@ -51,24 +51,45 @@ export class CursosComponent {
         alert('Complete todos los valores del formulario correctamente');
         return;
       }  
-      if(this.idActual===0){
+      if(this.idActual===''){
         //nuevo
-        const newCurso = this.cursoForm.value;
+        /*const newCurso = this.cursoForm.value;
         newCurso.id = (this.cursos.length>0) ? this.cursos[this.cursos.length - 1].id + 1 : 1; 
-        this.cursos = [...this.cursos, newCurso];
+        this.cursos = [...this.cursos, newCurso];*/
+
+        const { id, ...newCurso } = this.cursoForm.value;
+        this.cursosService.create(newCurso).subscribe({
+          next: (response) => {
+            this.cursos = [...this.cursos, response];
+          },
+          error: (error) => console.error(error),
+          complete: () => {console.log('Cuso creado exitosamente')},
+        });
       } else {
         //edita
-        this.cursos = this.cursos.map((el) => el.id === this.idActual ? { ...el, ...this.cursoForm.value } : el);
+        //this.cursos = this.cursos.map((el) => el.id === this.idActual ? { ...el, ...this.cursoForm.value } : el);
+        const curso = this.cursoForm.value;
+        this.cursosService.update(this.idActual,curso).subscribe({
+          next: (response) => {
+            this.cursos = response;
+            console.log(this.cursos);
+          },
+        });
       }
   
-      this.idActual = 0;
+      this.idActual = '';
       this.cursoForm.reset();
     }
   
     onDeleteCurso(id:number){
       console.log('Se elimina curso '+id)
       if(confirm('¿Está seguro de eliminar el curso?')){
-        this.cursos = this.cursos.filter((el)=>el.id!==id);
+        //this.cursos = this.cursos.filter((el)=>el.id!==id);
+        this.cursosService.delete(id.toLocaleString()).subscribe({
+          next: (response) => {
+            this.cursos = response;
+          },
+        });
       }
     }
   

@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Curso } from './models';
-import { delay, Observable, of } from 'rxjs';
+import { Curso, CursoForm } from './models';
+import { Observable, concatMap, forkJoin, map, mergeMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
-const CURSOS: Curso[] = [
-    {id: 1, nombre: 'Panadería y pastelería', descripcion: 'Con este curso aprenderás bases y técnicas de la panadería y pastelería clásica.'},
-    {id: 2, nombre: 'Cocina navideña', descripcion: 'Con este curso corto de dos clases aprenderás platos salados y dulces para la mesa navideña.'},
-    {id: 3, nombre: 'Decoración de pasteles con bordes perfectos', descripcion: 'Curso corto para aprender cómo decorar las tortas con bordes filosos y obtener resultados impecables.'},
-];
+import { Alumno } from './../alumnos/models';
+import { Inscripcion,InscripcionExpand } from './../../../../core/models';
 
 @Injectable({ providedIn: 'root' })
 export class CursosService {
@@ -16,4 +12,39 @@ export class CursosService {
         //return of([...CURSOS]).pipe(delay(500));
         return this.http.get<Curso[]>(`http://localhost:3000/courses`);
     }
+  getById(id: string): Observable<Curso> {
+    return this.http.get<Curso>(`http://localhost:3000/courses/${id}`);
+  }
+  getInscriptionsById(id:string): Observable<InscripcionExpand[]> {
+    //return this.http.get<InscriptionsExpand[]>(`http://localhost:3000/inscriptions?courseId=${id}`);
+    return this.http.get<Inscripcion[]>(`http://localhost:3000/inscriptions?courseId=${id}`)
+    .pipe(
+      mergeMap(inscriptions => {
+        // Creamos un array de observables para obtener cada curso
+        const requests = inscriptions.map(inscription =>
+          this.http.get<Alumno>(`http://localhost:3000/students/${inscription.studentId}`)
+            .pipe(
+              map(alumno => ({
+                ...inscription,
+                nombre: alumno.nombre + ' ' + alumno.apellido
+              }))
+            )
+        );
+        // Ejecutamos todas las peticiones en paralelo y esperamos a que todas terminen
+        return forkJoin(requests);
+      })
+    );
+  }
+  create(curso: CursoForm): Observable<Curso> {
+    return this.http.post<Curso>(`http://localhost:3000/courses`, curso);
+  }
+  delete(id: string): Observable<Curso[]> {
+    return this.http
+      .delete<Curso[]>(`http://localhost:3000/courses/${id}`)
+      .pipe(concatMap(() => this.getCursos$()));
+  }
+  update(id: string, curso: CursoForm): Observable<Curso[]> {
+    return this.http.patch<Curso>(`http://localhost:3000/courses/${id}`, curso)
+      .pipe(concatMap(() => this.getCursos$()));
+  }
 }

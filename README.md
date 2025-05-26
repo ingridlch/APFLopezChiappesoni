@@ -1,6 +1,6 @@
-# Segunda entrega de Proyecto final de curso de Angular
+# Tercera entrega de Proyecto final de curso de Angular
 
-Generación un proyecto Angular que contempla la administración de alumnos, cursos y clases. Se utiliza Angular Material, servicios que devuelven observables con datos mockeados y routing.
+Generación un proyecto Angular que contempla la administración de alumnos, cursos y clases. Se utiliza Angular Material, servicios que devuelven observables, Lazy Loading y Rutas child, Guards y Autenticación de usuarios, API Rest.
 
 ## Development server
 
@@ -12,7 +12,7 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+## Code scaffoldin
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 

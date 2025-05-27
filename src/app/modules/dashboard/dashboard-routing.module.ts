@@ -22,12 +22,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/usuarios/usuarios.module').then((m) => m.UsuariosModule),
   },
-  /*{
+  {
     path: 'inscripciones',
     data: { title: 'Inscripciones' },
     loadChildren: () =>
       import('./modules/inscripciones/inscripciones.module').then((m) => m.InscripcionesModule),
-  },*/
+  },
   {
     path: '**',
     data: { title: 'Cursos' },

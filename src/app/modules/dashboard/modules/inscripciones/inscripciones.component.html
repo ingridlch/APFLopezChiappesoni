@@ -1,0 +1,10 @@
+<h3>Inscripciones</h3>
+
+<label>Lista inscripciones de estudiantes a cursos</label>
+<ng-container *ngIf="isLoading; else notLoading">
+  <p>Cargando, por favor espere...</p>
+</ng-container>
+
+<ng-template #notLoading>
+
+</ng-template> 

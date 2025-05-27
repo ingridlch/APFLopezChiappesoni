@@ -20,7 +20,15 @@ export interface Inscripcion{
   courseId : string;
   studentId : string;
 }
+export interface InscripcionForm{
+  courseId : string;
+  studentId : string;
+}
 
 export interface InscripcionExpand extends Inscripcion {
   nombre?: string;
+}
+export interface InscripcionExpandComplete extends Inscripcion {
+  nombreStudent?: string;
+  nombreCourse?: string;
 }

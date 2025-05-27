@@ -1,6 +1,6 @@
 # Tercera entrega de Proyecto final de curso de Angular
 
-Generación un proyecto Angular que contempla la administración de alumnos, cursos y clases. Se utiliza Angular Material, servicios que devuelven observables, Lazy Loading y Rutas child, Guards y Autenticación de usuarios, API Rest.
+Generación un proyecto Angular que contempla la administración de alumnos, cursos y clases. Se utiliza Angular Material, servicios que devuelven observables, Lazy Loading y Rutas child, Guards y Autenticación de usuarios, API Rest y test unitarios en componentes y servicios.
 
 ## Development server
 

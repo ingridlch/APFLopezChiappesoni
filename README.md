@@ -1,6 +1,6 @@
-# Tercera entrega de Proyecto final de curso de Angular
+# Entrega de Proyecto final de curso de Angular
 
-Generación un proyecto Angular que contempla la administración de alumnos, cursos y clases. Se utiliza Angular Material, servicios que devuelven observables, Lazy Loading y Rutas child, Guards y Autenticación de usuarios, API Rest y test unitarios en componentes y servicios.
+Generación un proyecto Angular que contempla la administración de alumnos, cursos y clases. Se utiliza Angular Material, servicios que devuelven observables, Lazy Loading y Rutas child, Guards y Autenticación de usuarios, API Rest y test unitarios en componentes y servicios, implementa la librería NGRX.
 
 ## Development server
 
@@ -43,17 +43,3 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 ```bash
 ng test
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

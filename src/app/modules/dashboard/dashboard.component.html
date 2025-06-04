@@ -3,7 +3,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span>Escuela de cocina</span>
-    <span>{{title}}</span>
+    <span>{{title$ | async }}</span>
     <span class="spacer"></span>
     <label *ngIf="authUser | async; let user" class="usuario">
       {{ user.name }}

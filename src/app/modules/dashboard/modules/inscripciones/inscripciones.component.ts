@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Inscripcion, InscripcionExpandComplete } from './../../../../core/models';
+import { Inscripcion } from './../../../../core/models';
 import { InscripcionesService } from './inscripciones.service';
 import { Alumno } from './../alumnos/models';
 import { AlumnosService } from './../alumnos/alumnos.service';
@@ -18,9 +18,6 @@ import { User } from '../../../../core/models';
 export class InscripcionesComponent {
   isLoading = false;
   inscripciones : Inscripcion[] = [];
-  inscripcionCompleta : InscripcionExpandComplete[] = [];
-  alumnos : Alumno[] = [];
-  cursos : Curso[] = [];
   alumnosSubscription: Subscription | null = null; // Subscription to manage the observable
   authUser$: Observable<User | null>;
     

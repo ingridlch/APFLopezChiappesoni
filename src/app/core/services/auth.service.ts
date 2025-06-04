@@ -3,13 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from './../models';
 import { BehaviorSubject, map, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { clearUser, setUser } from '../../store/user/user.actions';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private _authUser$ = new BehaviorSubject<User | null>(null);
   authUser$: Observable<User | null> = this._authUser$.asObservable();
   
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private store: Store) {}
 
   login(email: string, password: string): void {
     console.log('haciendo login')
@@ -22,6 +24,7 @@ export class AuthService {
             localStorage.setItem('token',user.token);
             this.router.navigate(['/dashboard']);
             this._authUser$.next(user);
+            this.store.dispatch(setUser({ user }));
           } else {
             alert('Email o password incorrecto');
           }
@@ -32,6 +35,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     this._authUser$.next(null);
+    this.store.dispatch(clearUser());
     this.router.navigate(['/login']);
   }
 

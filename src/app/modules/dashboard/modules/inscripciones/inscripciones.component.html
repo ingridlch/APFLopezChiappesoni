@@ -6,5 +6,16 @@
 </ng-container>
 
 <ng-template #notLoading>
-
+    <mat-list>
+        <mat-list-item *ngFor="let inscripcion of inscripciones">
+            <button mat-icon-button (click)="onDeleteInscripcion(inscripcion.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            {{ inscripcion.course?.nombre }} 
+            - 
+            {{ inscripcion.student?.nombre }}
+            {{ inscripcion.student?.apellido }}
+        </mat-list-item>
+    </mat-list>
+<hr />
 </ng-template> 

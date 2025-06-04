@@ -39,7 +39,7 @@ export class AlumnosComponent {
         next: (datos) => {
           this.alumnos = datos;
         },
-        error: (error) => console.error(error),
+        error: (error) => {},
         complete: () => {
           this.isLoading = false;
         },
@@ -60,8 +60,8 @@ export class AlumnosComponent {
         next: (response) => {
           this.alumnos = [...this.alumnos, response];
         },
-        error: (error) => console.error(error),
-        complete: () => {console.log('Alumno creado exitosamente')},
+        error: (error) => {},
+        complete: () => {},
       });
     } else {
       //edita
@@ -69,7 +69,6 @@ export class AlumnosComponent {
       this.alumnosService.update(this.idActual,alumno).subscribe({
         next: (response) => {
           this.alumnos = response;
-          console.log(this.alumnos);
         },
       });
       //this.alumnos = this.alumnos.map((al) => al.id === this.idActual ? { ...al, ...this.alumnoForm.value } : al);
@@ -80,7 +79,6 @@ export class AlumnosComponent {
   }
 
   onDeleteAlumno(id:number | string){
-    console.log('Se elimina alumno '+id)
     if(confirm('¿Está seguro de eliminar el alumno?')){
       //this.alumnos = this.alumnos.filter((al)=>al.id!==id);
       this.alumnosService.delete(id.toLocaleString()).subscribe({
@@ -93,7 +91,6 @@ export class AlumnosComponent {
 
   onEditAlumno(alumno:Alumno){
     this.idActual = alumno.id;
-    console.log('Se edita el alumno '+alumno.id)
     this.alumnoForm.patchValue(alumno)
   }
 }

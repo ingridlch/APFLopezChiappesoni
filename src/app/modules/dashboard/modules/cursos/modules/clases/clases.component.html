@@ -2,7 +2,7 @@
 <h5>Alumnos se han inscripto:</h5>
     <mat-list>
         <mat-list-item *ngFor="let curso of inscripciones$ | async">
-            <button mat-icon-button (click)="eliminarInscripcion(curso.id)">
+            <button mat-icon-button (click)="onDeleteInscripcion(curso.id)">
                 <mat-icon>delete</mat-icon>
             </button>
             {{ curso.nombre }}

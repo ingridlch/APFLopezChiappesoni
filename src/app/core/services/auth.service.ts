@@ -14,13 +14,11 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router, private store: Store) {}
 
   login(email: string, password: string): void {
-    console.log('haciendo login')
     this.http.get<User[]>(`http://localhost:3000/users?email=${email}&password=${password}`)
       .subscribe({
         next:(resp)=>{
           const user = resp[0];
           if(user){
-            console.log('Usuario ',user);
             localStorage.setItem('token',user.token);
             this.router.navigate(['/dashboard']);
             this._authUser$.next(user);

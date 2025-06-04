@@ -57,17 +57,17 @@
   ],
   "courses": [
     {
-      "id": 1,
+      "id": "1",
       "nombre": "Panadería y pastelería",
       "descripcion": "Con este curso aprenderás bases y técnicas de la panadería y pastelería clásica."
     },
     {
-      "id": 2,
+      "id": "2",
       "nombre": "Cocina navideña",
       "descripcion": "Con este curso corto de dos clases aprenderás platos salados y dulces para la mesa navideña."
     },
     {
-      "id": 3,
+      "id": "3",
       "nombre": "Decoración de pasteles con bordes perfectos",
       "descripcion": "Curso corto para aprender cómo decorar las tortas con bordes filosos y obtener resultados impecables."
     }
@@ -129,46 +129,23 @@
     }
   ],
   "inscriptions": [
-    {
-      "id": "1",
-      "courseId": "1",
-      "studentId": "1"
-    },
-    {
-      "id": "2",
-      "courseId": "1",
-      "studentId": "2"
-    },
-    {
-      "id": "3",
-      "courseId": "1",
-      "studentId": "3"
-    },
-    {
-      "id": "4",
-      "courseId": "2",
-      "studentId": "2"
-    },
-    {
-      "id": "5",
-      "courseId": "2",
-      "studentId": "4"
-    },
-    {
-      "id": "6",
-      "courseId": 3,
-      "studentId": "5"
-    },
-    {
-      "id": "7",
-      "courseId": 3,
-      "studentId": "6"
-    },
-    {
-      "id": "8",
-      "courseId": 3,
-      "studentId": "1"
-    }
+    { "id": "1", "courseId": "1", "studentId": "1", "userId": "1"},
+    { "id": "2", "courseId": "1", "studentId": "4", "userId": "3"},
+    { "id": "3", "courseId": "1", "studentId": "2", "userId": "3"},
+    { "id": "4", "courseId": "1", "studentId": "6", "userId": "3"},
+    { "id": "5", "courseId": "2", "studentId": "4", "userId": "3"},
+    { "id": "6", "courseId": "3", "studentId": "5", "userId": "4"},
+    { "id": "7", "courseId": "3", "studentId": "6", "userId": "3"},
+    { "id": "8", "courseId": "3", "studentId": "7", "userId": "3"},
+    { "id": "9", "courseId": "3", "studentId": "8", "userId": "3"},
+    { "id": "10", "courseId": "3", "studentId": "3", "userId": "3"},
+    { "id": "11", "courseId": "2", "studentId": "1", "userId": "3"},
+    { "id": "12", "courseId": "2", "studentId": "2", "userId": "3"},
+    { "id": "13", "courseId": "2", "studentId": "3", "userId": "3"},
+    { "id": "14", "courseId": "2", "studentId": "4", "userId": "3"},
+    { "id": "15", "courseId": "2", "studentId": "5", "userId": "3"},
+    { "id": "16", "courseId": "2", "studentId": "6", "userId": "3"},
+    { "id": "17", "courseId": "2", "studentId": "7", "userId": "3"}
   ],
   "users": [
     {

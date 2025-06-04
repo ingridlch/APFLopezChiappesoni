@@ -8,6 +8,7 @@ import { AuthService } from '../../../../../../core/services/auth.service';
 import { User } from '../../../../../../core/models';
 import { InscripcionExpand } from './../../../../../../core/models';
 import { CursosService } from '../../cursos.service';
+import { InscripcionesService } from '../../../inscripciones/inscripciones.service';
 
 @Component({
   selector: 'app-clases',
@@ -26,7 +27,7 @@ export class ClasesComponent {
   authUser$: Observable<User | null>;
   inscripciones$ : Observable<InscripcionExpand[]>;
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute, private fb: FormBuilder, private clasesService: ClasesService, private authService: AuthService, private cursosService: CursosService){
+    constructor(private router: Router, private activatedRoute: ActivatedRoute, private fb: FormBuilder, private clasesService: ClasesService, private authService: AuthService, private cursosService: CursosService, private inscripcionesService: InscripcionesService){
       this.authUser$ = this.authService.authUser$;
       this.nombre = this.activatedRoute.snapshot.queryParams['nombre'];
       this.cursoId = this.activatedRoute.snapshot.params['id'];//==Number(this.activatedRoute.snapshot.params['id'])) ? Number(this.activatedRoute.snapshot.params['id']) : 0;
@@ -51,7 +52,7 @@ export class ClasesComponent {
           next: (datos) => {
             this.clases = datos;
           },
-          error: (error) => console.error(error),
+          error: (error) => {},
           complete: () => {
             this.isLoading = false;
           },
@@ -74,8 +75,8 @@ export class ClasesComponent {
           next: (response) => {
             this.clases = [...this.clases, response];
           },
-          error: (error) => console.error(error),
-          complete: () => {console.log('Clase creada exitosamente')},
+          error: (error) => {},
+          complete: () => {},
         });
 
       } else {
@@ -94,7 +95,6 @@ export class ClasesComponent {
     }
   
     onDeleteClase(id:number){
-      console.log('Se elimina clase '+id)
       if(confirm('¿Está seguro de eliminar la clase?')){
         //this.clases = this.clases.filter((el)=>el.id!==id);
         this.clasesService.delete(id.toLocaleString(),this.cursoId).subscribe({
@@ -107,13 +107,16 @@ export class ClasesComponent {
   
     onEditClase(clase:Clase){
       this.idActual = clase.id;
-      console.log('Se edita la clase '+clase.id)
       this.claseForm.patchValue(clase)
     }
 
-    eliminarInscripcion(id: string) {
+    onDeleteInscripcion(id: string) {
       if(confirm('Desea eliminar la inscripción al curso?')){
-        console.log('eliminando inscripcion '+id) 
+        this.inscripcionesService.delete(id.toLocaleString()).subscribe({
+          next: (response) => {
+            this.inscripciones$ = this.cursosService.getInscriptionsById(this.cursoId);
+          },
+        });
       }
     }
 

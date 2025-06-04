@@ -18,7 +18,7 @@ import { User } from '../../../../core/models';
 export class InscripcionesComponent {
   isLoading = false;
   inscripciones : Inscripcion[] = [];
-  alumnosSubscription: Subscription | null = null; // Subscription to manage the observable
+  inscripcionesSubscription: Subscription | null = null;
   authUser$: Observable<User | null>;
     
     constructor(private inscripcionesService: InscripcionesService, private alumnosService: AlumnosService, private cursosService: CursosService, private authService: AuthService){
@@ -27,7 +27,28 @@ export class InscripcionesComponent {
     }
   
     loadInscripcionCompleta() {
-      console.log('Lista inscripciones')
+      this.isLoading = true;
+      this.inscripcionesSubscription = this.inscripcionesService
+        .get$()
+        .subscribe({
+          next: (datos) => {
+            this.inscripciones = datos;
+          },
+          error: (error) => {},
+          complete: () => {
+            this.isLoading = false;
+          },
+        });
+    }
+
+    onDeleteInscripcion(id: string){
+      if(confirm('¿Está seguro de eliminar inscripción?')){
+        this.inscripcionesService.delete(id.toLocaleString()).subscribe({
+          next: (response) => {
+            this.loadInscripcionCompleta();
+          },
+        });
+      }
     }
 
 }

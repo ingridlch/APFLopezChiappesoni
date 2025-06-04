@@ -16,17 +16,17 @@ const routes: Routes = [
       import('./modules/cursos/cursos.module').then((m) => m.CursosModule),
   },
   {
+    path: 'inscripciones',
+    data: { title: 'Inscripciones' },
+    loadChildren: () =>
+      import('./modules/inscripciones/inscripciones.module').then((m) => m.InscripcionesModule),
+  },
+  {
     path: 'usuarios',
     canActivate: [adminGuard],
     data: { title: 'Usuarios' },
     loadChildren: () =>
       import('./modules/usuarios/usuarios.module').then((m) => m.UsuariosModule),
-  },
-  {
-    path: 'inscripciones',
-    data: { title: 'Inscripciones' },
-    loadChildren: () =>
-      import('./modules/inscripciones/inscripciones.module').then((m) => m.InscripcionesModule),
   },
   {
     path: '**',

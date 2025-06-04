@@ -2,7 +2,7 @@
     <a mat-list-item routerLink="alumnos">Alumnos</a>
     <a mat-list-item routerLink="cursos">Cursos</a>    
     <a mat-list-item *ngIf="role ==='admin'" routerLink="usuarios">Usuarios</a>
-    <a mat-list-item *ngIf="role ==='user'" routerLink="inscripciones">Inscripciones</a>
+    <a mat-list-item routerLink="inscripciones">Inscripciones</a>
     <a mat-list-item  (click)="logout()">Logout</a>
   </mat-nav-list>
   

@@ -40,7 +40,7 @@ export class UsuariosComponent {
         next: (datos) => {
           this.usuarios = datos;
         },
-        error: (error) => console.error(error),
+        error: (error) => {},
         complete: () => {
           this.isLoading = false;
         },
@@ -59,8 +59,8 @@ export class UsuariosComponent {
         next: (response) => {
           this.usuarios = [...this.usuarios, response];
         },
-        error: (error) => console.error(error),
-        complete: () => {console.log('Usuario creado exitosamente')},
+        error: (error) => {},
+        complete: () => {},
       });
     } else {
       //edita
@@ -68,7 +68,6 @@ export class UsuariosComponent {
       this.usuariosService.update(this.idActual,user).subscribe({
         next: (response) => {
           this.usuarios = response;
-          console.log(this.usuarios);
         },
       });
     }
@@ -78,7 +77,6 @@ export class UsuariosComponent {
   }
 
   onDeleteUsuario(id:number | string){
-    console.log('Se elimina usuario '+id)
     if(confirm('¿Está seguro de eliminar el usuario?')){
       this.usuariosService.delete(id.toLocaleString()).subscribe({
         next: (response) => {
@@ -90,7 +88,6 @@ export class UsuariosComponent {
 
   onEditUsuario(user:User){
     this.idActual = user.id;
-    console.log('Se edita el user '+user.id)
     this.usuarioForm.patchValue(user)
   }
 

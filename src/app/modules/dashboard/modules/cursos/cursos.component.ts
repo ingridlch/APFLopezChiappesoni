@@ -39,7 +39,7 @@ export class CursosComponent {
           next: (datos) => {
             this.cursos = datos;
           },
-          error: (error) => console.error(error),
+          error: (error) => {},
           complete: () => {
             this.isLoading = false;
           },
@@ -62,8 +62,8 @@ export class CursosComponent {
           next: (response) => {
             this.cursos = [...this.cursos, response];
           },
-          error: (error) => console.error(error),
-          complete: () => {console.log('Cuso creado exitosamente')},
+          error: (error) => {},
+          complete: () => {},
         });
       } else {
         //edita
@@ -72,7 +72,6 @@ export class CursosComponent {
         this.cursosService.update(this.idActual,curso).subscribe({
           next: (response) => {
             this.cursos = response;
-            console.log(this.cursos);
           },
         });
       }
@@ -82,7 +81,6 @@ export class CursosComponent {
     }
   
     onDeleteCurso(id:number){
-      console.log('Se elimina curso '+id)
       if(confirm('¿Está seguro de eliminar el curso?')){
         //this.cursos = this.cursos.filter((el)=>el.id!==id);
         this.cursosService.delete(id.toLocaleString()).subscribe({
@@ -95,7 +93,6 @@ export class CursosComponent {
   
     onEditCurso(curso:Curso){
       this.idActual = curso.id;
-      console.log('Se edita el curso '+curso.id)
       this.cursoForm.patchValue(curso)
     }
 }

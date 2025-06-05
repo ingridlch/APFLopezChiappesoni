@@ -11,6 +11,21 @@ export const UsuariosActions = createActionGroup({
     // Accion de error
     'Load Usuarios Failure': props<{ error: string }>(),
 
+    // Agregar usuario
+    'Add Usuario': props<{ usuario: User }>(),
+    'Add Usuario Success': props<{ usuario: User }>(),
+    'Add Usuario Failure': props<{ error: string }>(),
+
+    // Modificar usuario
+    'Update Usuario': props<{ id: string, usuario: User }>(),
+    'Update Usuario Success': props<{ usuario: User }>(),
+    'Update Usuario Failure': props<{ error: string }>(),
+
+    // Eliminar usuario
+    'Delete Usuario': props<{ id: string }>(),
+    'Delete Usuario Success': props<{ usuario: User }>(),
+    'Delete Usuario Failure': props<{ error: string }>(),
+
     'Load Usuario By Id': props<{ id: string }>(),
   },
 });

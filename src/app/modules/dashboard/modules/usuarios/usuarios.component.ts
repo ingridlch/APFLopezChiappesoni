@@ -70,21 +70,23 @@ export class UsuariosComponent implements OnInit {
     if(this.idActual===''){
       const { id, ...newUser } = this.usuarioForm.value;
       newUser.token = crypto.randomUUID();
-      this.usuariosService.create(newUser).subscribe({
+      this.store.dispatch(UsuariosActions.addUsuario({ usuario: newUser }));
+      /*this.usuariosService.create(newUser).subscribe({
         next: (response) => {
           this.usuarios = [...this.usuarios, response];
         },
         error: (error) => {},
         complete: () => {},
-      });
+      });*/
     } else {
       //edita
       const user = this.usuarioForm.value;
-      this.usuariosService.update(this.idActual,user).subscribe({
+      this.store.dispatch(UsuariosActions.updateUsuario({ id:this.idActual, usuario: user }));
+      /*this.usuariosService.update(this.idActual,user).subscribe({
         next: (response) => {
           this.usuarios = response;
         },
-      });
+      });*/
     }
 
     this.idActual = '';
@@ -93,11 +95,12 @@ export class UsuariosComponent implements OnInit {
 
   onDeleteUsuario(id:number | string){
     if(confirm('¿Está seguro de eliminar el usuario?')){
-      this.usuariosService.delete(id.toLocaleString()).subscribe({
+      this.store.dispatch(UsuariosActions.deleteUsuario({ id:id.toLocaleString() }));
+      /*this.usuariosService.delete(id.toLocaleString()).subscribe({
         next: (response) => {
           this.usuarios = response;
         },
-      });
+      });*/
     }
   }
 

@@ -129,28 +129,113 @@
     }
   ],
   "inscriptions": [
-    { "id": "1", "courseId": "1", "studentId": "1", "userId": "1"},
-    { "id": "2", "courseId": "1", "studentId": "4", "userId": "3"},
-    { "id": "3", "courseId": "1", "studentId": "2", "userId": "3"},
-    { "id": "4", "courseId": "1", "studentId": "6", "userId": "3"},
-    { "id": "5", "courseId": "2", "studentId": "4", "userId": "3"},
-    { "id": "6", "courseId": "3", "studentId": "5", "userId": "4"},
-    { "id": "7", "courseId": "3", "studentId": "6", "userId": "3"},
-    { "id": "8", "courseId": "3", "studentId": "7", "userId": "3"},
-    { "id": "9", "courseId": "3", "studentId": "8", "userId": "3"},
-    { "id": "10", "courseId": "3", "studentId": "3", "userId": "3"},
-    { "id": "11", "courseId": "2", "studentId": "1", "userId": "3"},
-    { "id": "12", "courseId": "2", "studentId": "2", "userId": "3"},
-    { "id": "13", "courseId": "2", "studentId": "3", "userId": "3"},
-    { "id": "14", "courseId": "2", "studentId": "4", "userId": "3"},
-    { "id": "15", "courseId": "2", "studentId": "5", "userId": "3"},
-    { "id": "16", "courseId": "2", "studentId": "6", "userId": "3"},
-    { "id": "17", "courseId": "2", "studentId": "7", "userId": "3"}
+    {
+      "id": "1",
+      "courseId": "1",
+      "studentId": "1",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "courseId": "1",
+      "studentId": "4",
+      "userId": "3"
+    },
+    {
+      "id": "3",
+      "courseId": "1",
+      "studentId": "2",
+      "userId": "3"
+    },
+    {
+      "id": "4",
+      "courseId": "1",
+      "studentId": "6",
+      "userId": "3"
+    },
+    {
+      "id": "5",
+      "courseId": "2",
+      "studentId": "4",
+      "userId": "3"
+    },
+    {
+      "id": "6",
+      "courseId": "3",
+      "studentId": "5",
+      "userId": "4"
+    },
+    {
+      "id": "7",
+      "courseId": "3",
+      "studentId": "6",
+      "userId": "3"
+    },
+    {
+      "id": "8",
+      "courseId": "3",
+      "studentId": "7",
+      "userId": "3"
+    },
+    {
+      "id": "9",
+      "courseId": "3",
+      "studentId": "8",
+      "userId": "3"
+    },
+    {
+      "id": "10",
+      "courseId": "3",
+      "studentId": "3",
+      "userId": "3"
+    },
+    {
+      "id": "11",
+      "courseId": "2",
+      "studentId": "1",
+      "userId": "3"
+    },
+    {
+      "id": "12",
+      "courseId": "2",
+      "studentId": "2",
+      "userId": "3"
+    },
+    {
+      "id": "13",
+      "courseId": "2",
+      "studentId": "3",
+      "userId": "3"
+    },
+    {
+      "id": "14",
+      "courseId": "2",
+      "studentId": "4",
+      "userId": "3"
+    },
+    {
+      "id": "15",
+      "courseId": "2",
+      "studentId": "5",
+      "userId": "3"
+    },
+    {
+      "id": "16",
+      "courseId": "2",
+      "studentId": "6",
+      "userId": "3"
+    },
+    {
+      "id": "17",
+      "courseId": "2",
+      "studentId": "7",
+      "userId": "3"
+    }
   ],
   "users": [
     {
       "id": "1",
-      "name": "Delfina",
+      "name": "Delfina Fiorotto",
       "email": "delfina@mail.com",
       "password": "123456",
       "role": "admin",

@@ -12,13 +12,13 @@ export class UsuariosService {
   create(user: UserForm): Observable<User> {
     return this.http.post<User>(`http://localhost:3000/users`, user);
   }
-  delete(id: string): Observable<User[]> {
+  delete(id: string): Observable<User> {
     return this.http
-      .delete<User[]>(`http://localhost:3000/users/${id}`)
-      .pipe(concatMap(() => this.get$()));
+      .delete<User>(`http://localhost:3000/users/${id}`);
+      //.pipe(concatMap(() => this.get$()));
   }
-  update(id: string, user: User): Observable<User[]> {
-    return this.http.patch<User>(`http://localhost:3000/users/${id}`, user)
-      .pipe(concatMap(() => this.get$()));
+  update(id: string, user: User): Observable<User> {
+    return this.http.patch<User>(`http://localhost:3000/users/${id}`, user);
+      //.pipe(concatMap(() => this.get$()));
   }
 }

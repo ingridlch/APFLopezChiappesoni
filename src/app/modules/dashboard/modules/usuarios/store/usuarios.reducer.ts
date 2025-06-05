@@ -40,7 +40,81 @@ const usuariosReducer = createReducer(
       usuarios: [],
       error: action.error,
     };
-  })
+  }),
+
+  // Add Usuario
+  on(UsuariosActions.addUsuario, (state) => {
+    return {
+        ...state,
+        loading: true,
+        error: null,
+    };
+  }),
+  on(UsuariosActions.addUsuarioSuccess, (state, { usuario }) => {
+    return {
+        ...state,
+        usuarios: [...state.usuarios, usuario],
+        loading: false,
+        error: null,
+    };
+  }),
+  on(UsuariosActions.addUsuarioFailure, (state, { error }) => {
+    return {
+        ...state,
+        loading: false,
+        error,
+    };
+  }),
+
+  // Update Usuario
+  on(UsuariosActions.updateUsuario, (state) => {
+    return {
+        ...state,
+        loading: true,
+        error: null,
+    };
+  }),
+  on(UsuariosActions.updateUsuarioSuccess, (state, { usuario }) => {
+    return {
+        ...state,
+        usuarios: state.usuarios.map(u => u.id === usuario.id ? usuario : u),
+        loading: false,
+        error: null,
+    };
+  }),
+  on(UsuariosActions.updateUsuarioFailure, (state, { error }) => {
+    return {
+        ...state,
+        loading: false,
+        error,
+    };
+  }),
+
+  // Delete Usuario
+  on(UsuariosActions.deleteUsuario, (state) => {
+    return {
+        ...state,
+        loading: true,
+        error: null,
+    };
+  }),
+  on(UsuariosActions.deleteUsuarioSuccess, (state, { usuario }) => {
+    return {
+        ...state,
+        usuarios: state.usuarios.filter(u => u.id !== usuario.id),
+        loading: false,
+        error: null,
+    };
+  }),
+  on(UsuariosActions.deleteUsuarioFailure, (state, { error }) => {
+    return {
+        ...state,
+        loading: false,
+        error,
+    };
+  }),
+
+
 );
 
 export const usuariosFeature = createFeature({

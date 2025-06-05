@@ -13,7 +13,7 @@ export class UsuariosTableComponent {
   displayedColumns: string[] = ['nombre', 'email', 'acciones'];
 
   @Input()
-  dataSource: User[] = [];
+  dataSource: User[] = [];// | null | undefined 
 
   @Output()
   deleteUsuario = new EventEmitter<number>();

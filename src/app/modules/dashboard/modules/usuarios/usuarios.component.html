@@ -1,10 +1,16 @@
 <h1>Usuarios</h1>
 
-<ng-container *ngIf="isLoading; else notLoading">
+@if (loading$ | async) {
+<p>Cargando, por favor espere...</p>
+} @else if (error$ | async) {
+<p>Error al cargar las usuarios.</p>
+} @else {
+
+<!--<ng-container *ngIf="isLoading; else notLoading">
   <p>Cargando, por favor espere...</p>
 </ng-container>
 
-<ng-template #notLoading>
+<ng-template #notLoading>-->
   <form *ngIf="(authUser$ | async)?.role === 'admin'" [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" >
     <div class="row">
         <div class="col-3">
@@ -49,6 +55,8 @@
     </div>  
   </form>
 
-  <app-usuarios-table (editUsuario)="onEditUsuario($event)" (deleteUsuario)="onDeleteUsuario($event)" [dataSource]="usuarios" />
+  <app-usuarios-table (editUsuario)="onEditUsuario($event)" (deleteUsuario)="onDeleteUsuario($event)" 
+      [dataSource]="usuarios$ | async" />
 
-</ng-template>  
+<!--</ng-template>  -->
+}
